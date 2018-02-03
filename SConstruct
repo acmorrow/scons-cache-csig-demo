@@ -22,7 +22,7 @@ def monkey_get_csig(self):
 
     csig = self.get_max_drift_csig()
     if csig is None:
-        print "Computing csig for", str(self), id(self), id(ninfo)
+
         try:
             if self.get_size() < SCons.Node.FS.File.md5_chunksize:
                 contents = self.get_contents()
@@ -37,6 +37,8 @@ def monkey_get_csig(self):
         else:
             if not csig:
                 csig = SCons.Util.MD5signature(contents)
+
+        print "Computed csig for", str(self), csig
 
     ninfo.csig = csig
 
